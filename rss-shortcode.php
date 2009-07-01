@@ -17,14 +17,14 @@ function yoast_rss_shortcode( $atts ) {
 	require_once(ABSPATH.WPINC.'/rss.php');  
 	if ( $feed != "" && $rss = fetch_rss( $feed ) ) {
 		$content = '<ul>';
-		if ( $num_items !== -1 ) {
-			$rss->items = array_slice( $rss->items, 0, $num_items );
+		if ( $num !== -1 ) {
+			$rss->items = array_slice( $rss->items, 0, $num );
 		}
 		foreach ( (array) $rss->items as $item ) {
 			$content .= '<li>';
-			$content .= '<a href="'.esc_url( $item['link'] ).'">'.htmlentities( $item['title'] ).'</a>';
-			if ( $excerpt ) {
-				$content .= '<br/><span class="rss_excerpt">'.htmlentities( $item['summary'] ).'</span>';
+			$content .= '<a href="'.esc_url( $item['link'] ).'">'. $item['title'] .'</a>';
+			if ( $excerpt != false && $excerpt != "false") {
+				$content .= '<br/><span class="rss_excerpt">'. $item['summary'] .'</span>';
 			}
 			$content .= '</li>';
 		}
