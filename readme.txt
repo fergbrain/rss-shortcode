@@ -28,6 +28,11 @@ Example use:
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Use the shortcode in your posts and pages
 
+== Screenshots ==
+
+1. A simple listing of posts created by the RSS Shortcode.
+2. The shortcode that created the listing above.
+
 == Changelog ==
 
 = 0.1 =
