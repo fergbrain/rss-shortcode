@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: RSS Shortcode
-Version: 0.1
+Version: 0.2
 Plugin URI: http://yoast.com/wordpress/rss-shortcode/
 Description: Makes it easy to display an RSS feed on a page
 Author: Joost de Valk
@@ -12,7 +12,8 @@ function yoast_rss_shortcode( $atts ) {
 	extract(shortcode_atts(array(  
 	    "feed" 		=> '',  
 		"num" 		=> '5',  
-		"excerpt" 	=> true
+		"excerpt" 	=> true,
+		"target"	=> '_self'
 	), $atts));
 	require_once(ABSPATH.WPINC.'/rss.php');  
 	if ( $feed != "" && $rss = fetch_rss( $feed ) ) {
@@ -22,9 +23,12 @@ function yoast_rss_shortcode( $atts ) {
 		}
 		foreach ( (array) $rss->items as $item ) {
 			$content .= '<li>';
-			$content .= '<a href="'.esc_url( $item['link'] ).'">'. $item['title'] .'</a>';
+			if ($target != '_self')
+				$content .= '<a href="'.esc_url( $item['link'] ).'" target="'.esc_attr($target).'">'. esc_html($item['title']) .'</a>';
+			else
+				$content .= '<a href="'.esc_url( $item['link'] ).'">'. esc_html($item['title']) .'</a>';
 			if ( $excerpt != false && $excerpt != "false") {
-				$content .= '<br/><span class="rss_excerpt">'. $item['summary'] .'</span>';
+				$content .= '<br/><span class="rss_excerpt">'. esc_html($item['summary']) .'</span>';
 			}
 			$content .= '</li>';
 		}
