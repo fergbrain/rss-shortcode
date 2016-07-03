@@ -1,10 +1,10 @@
-=== RSS Shortcode ===
-Contributors: joostdevalk
+=== RSS Shortcode (ft. Fergcorp) ===
+Contributors: joostdevalk, fergbrain
 Donate link: http://yoast.com/
 Tags: rss, shortcode
 Requires at least: 2.6
-Tested up to: 3.0
-Stable tag: 0.2
+Tested up to: 4.5.3
+Stable tag: 0.3
 
 Simple plugin to show RSS feeds in posts and pages using a shortcode.
 
